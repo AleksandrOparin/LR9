@@ -1,18 +1,29 @@
-require "application_system_test_case"
+# frozen_string_literal: true
+
+require 'application_system_test_case'
 
 class IndicesTest < ApplicationSystemTestCase
-
-  test "visiting the index" do
+  test 'InputNumber=121' do
     visit root_url
-    
-    fill_in "InputNumber", with: "100"
-    
-    click_button "Result"
 
-    # assert_selector "h1", text: "Ввод числа"
-    # raise 'element missing!' unless page.has_css?('#output0')
-    # assert_selector "td", id: "output0", text: "0"
-    # assert_selector "input", id: "Length", text: ""
-    assert_selector "#output0",  text: "0"
+    fill_in 'InputNumber', with: '121'
+    result = [0, 1, 2, 3, 11, 22, 101, 111, 121]
+
+    click_on(id: 'Result')
+
+    result.each_with_index { |elem, index| assert_selector "#output-#{index}", text: elem.to_s }
+
+    assert_equal find_field('Length').value, result.length.to_s
+  end
+
+  test 'NegativeNumber' do
+    visit root_url
+
+    fill_in 'InputNumber', with: '-10'
+
+    click_on(id: 'Result')
+
+    assert_equal page.has_css?('#output-0'), false
+    assert_equal find_field('Length').value, '0'
   end
 end

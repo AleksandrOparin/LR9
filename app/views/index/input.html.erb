@@ -13,7 +13,7 @@
 
   <body>
     <%= tag.div class: %w( container d-flex flex-column align-items-center ) do -%>
-        <%= form_tag("#", :method => "get") do %>
+        <%= form_tag("#", :method => "get", remote: true) do %>
             <%= tag.section class: %w( py-5 text-center container fst-italic ) do -%>
                 <%= tag.div class: %w( row py-lg-5 ) do -%>
                     <%= tag.div class: %w( col-lg-6 col-md-8 mx-auto ) do -%>

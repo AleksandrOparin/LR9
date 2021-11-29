@@ -1,0 +1,39 @@
+<%= tag.section class: %w( py-5 text-center container fst-italic ) do -%>
+    <%= tag.div class: %w( row py-lg-5 ) do -%>
+        <%= tag.div class: %w( col-lg-6 col-md-8 mx-auto ) do -%>
+            <%= tag.h1 "Результат", class: "fw-light" %>
+            <%= tag.p "Числа, сами являющиеся палиндромами и при возведении в квадрат, образующие палиндромы (до n, введённого ранее).", class: %w( lead text-muted ) %>
+            <%= tag.div class: %w( col-12 fs-4 ) do -%>
+                <% if @error %>
+                    <%= tag.p "#{ @error }" %>
+                <% else %>
+                    <%= tag.table class: %w( table text-center ) do -%>
+                        <%= tag.thead do -%>
+                            <%= tag.tr do -%>
+                                <%= tag.th "Число", scope: "col" %>
+                                <%= tag.th "Квадрат числа", scope: "col" %>
+                            <% end -%>
+                        <% end -%>
+                        <%= tag.tbody do -%>
+                            <% @result.each do |number| %>
+                                <%= tag.tr do -%>
+                                    <%= tag.th "#{ number }" , scope: "row", class: "fw-normal" %>
+                                    <%= tag.th "#{ number**2 }", class: "fw-normal" %>
+                                <% end -%>
+                            <% end %>
+                        <% end -%>
+                    <% end -%>
+                    <%= tag.div class: %w( input-group mb-3 ) do -%>
+                        <%= tag.div class: %w( input-group-prepend ) do -%>
+                            <%= tag.span "Количество чисел:", class: %w( input-group-text fw-bold ) %>
+                        <% end -%>
+                        <%= tag.input id: "Result", value: "#{ @result.length }", placeholder: "Количество чисел", readonly: true, class: "form-control" %>
+                    <% end -%>
+                <% end %>
+                <%= tag.span class: "fs-3" do -%>
+                    <%= link_to "Назад к вводу числа", root_path %> 
+                <% end -%>
+            <% end -%>
+        <% end -%>
+     <% end -%>
+<% end -%>

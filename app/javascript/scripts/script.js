@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
-   document.getElementById('Result').addEventListener('click', send_query)
+   document.getElementById('Result').addEventListener('click', () => {
+      send_query()
+   })
 });
 
 index_url = location.protocol + "//" + location.host + "/index/output.json";
@@ -42,7 +44,7 @@ function show_result(data) {
     data.value.forEach((element) => { 
         tbody.innerHTML += `
             <tr>
-                <td id="output${ index++ }"> ${ element } </td>
+                <td id="output-${ index++ }"> ${ element } </td>
                 <td> ${ element**2 } </td>
             </tr>
         `
